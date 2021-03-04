@@ -28,6 +28,3 @@ int main (int argc, char * argv[]) {
 		
 	printf("%d", sum);
 }
-
-
-/*Written: MSK. 2021. Iv.Gavryushin. e-mail: ivangavr777@mail.com*/

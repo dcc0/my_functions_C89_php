@@ -1,6 +1,8 @@
 /*Данная функция переводит аргумент argv[1],
  * содержащй строку, в целое  число (по аналогии с функцией atoi).
 /* This function converts an argument (argv[1]) to integer (int)*/
+/*Written: MSK. 2021. Iv.Gavryushin. e-mail: ivangavr777@mail.com*/
+
 
 #include <stdio.h>
 

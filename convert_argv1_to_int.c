@@ -1,5 +1,7 @@
 /*Конвертация аргумента в число (по аналогии с функцией atoi)
 Converts an argument argv[1] to an integer*/
+/*Written: MSK. 2021. Iv.Gavryushin. e-mail: ivangavr777@mail.com*/
+
 
 
 

@@ -1,7 +1,6 @@
 /*Данная функция переводит аргумент argv[1],
  * содержащй строку, в целое  число (по аналогии с функцией atoi).
 /* This function converts an argument (argv[1]) to integer (int)*/
-#include <stdio.h>
 
 int argv1toi (char * var) {
 

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include  "argv1toi.h"
+#include  "factorial.h"
 
 /*Функция перебора перестановок.
  * Permutation function.*/
@@ -22,10 +23,7 @@ int permute(int
   /*Вычислим факториал
   для остановки алгоритма.
   * It calculates a factorial to stop the algorithm. */
-  while (j != var) {
-  j++;
-  f = j * f;
-  }
+  //f = factorial(var);
 
   /*Перестановки. Permutations.*/
   while (f--) {

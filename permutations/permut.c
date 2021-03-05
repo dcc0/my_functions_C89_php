@@ -14,7 +14,7 @@ int permute(int
   int f = 1; /*Факториал. Factorial*/
   int a[100] = {}; /*Вектор целых. Vector. Integers*/
 
-  /*Вычислим длину строки. It calculates an array's length*/
+  /*Вычислим длину строки и заполним массив. It calculates an array's length and fills an array*/
   for (x; x < var +1; x++)
   a[x] = x;
   a[x] = '\0';

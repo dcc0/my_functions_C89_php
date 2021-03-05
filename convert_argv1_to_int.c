@@ -2,9 +2,6 @@
 Converts an argument argv[1] to an integer*/
 /*Written: MSK. 2021. Iv.Gavryushin. e-mail: ivangavr777@mail.com*/
 
-
-
-
 #include <stdio.h>
 int main (int argc, char * argv[]) {
 
@@ -14,7 +11,7 @@ int main (int argc, char * argv[]) {
 	int vector[30] = {};
 	
 	/*Чтение символов аргумента в вектор
-  Reading symbols and creating vector*/	
+ 	 Reading symbols and creating vector*/	
 	for (i = 0;  argv[1][i] != '\0'; i++)
 	vector[i] = argv[1][i]-48;
 	

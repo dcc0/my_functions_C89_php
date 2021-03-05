@@ -23,7 +23,7 @@ int permute(int
   /*Вычислим факториал
   для остановки алгоритма.
   * It calculates a factorial to stop the algorithm. */
-  //f = factorial(var);
+  f = factorial(var);
 
   /*Перестановки. Permutations.*/
   while (f--) {

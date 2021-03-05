@@ -7,8 +7,8 @@
 
 int factorial (int var) {
 
-	 int f = 1;
-	 int j = 0;
+	int f = 1;
+	int j = 0;
 
 	while (j != var) {
 	j++;
@@ -23,8 +23,9 @@ int main(int argc, char * argv[]) {
 	int f = 0;
 	f = argv1toi(argv[1]);
 	
-	if (f > 13) {
-	printf("This program doesn't support long arithmetic, so a number must be < 13");
+	if (f > 12) {
+	printf("This program doesn't support long arithmetic, so a number must be < 13\n\r");
+	return 0;
 }	 	
 
 	f = factorial(f);

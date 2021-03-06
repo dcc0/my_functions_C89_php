@@ -12,7 +12,7 @@ int test(char * ip) {
 }
 	else {
 	return 0;
-  }
+   }
 		
 }	
 
@@ -31,9 +31,9 @@ void wait(int b, char * ip) {
 	else {
 	system("beep -f 1200 -l 2000");
 		
-	      }	
-	  }
-     }
+	    }	
+	}
+    }
 }
 
 

@@ -1,5 +1,7 @@
-/*Конечный автомат на С с двумя состояниями.
-Работает в фоне, уведомляет о разрыве сети*/
+/*В основе программы принцип конечного автомата с двумя состояниями.
+Программа работает в фоне, уведомляет о потере связи с сайтом/сетью
+*Prorgam works as finite state machine in background, notifying lost connection*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

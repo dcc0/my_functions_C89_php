@@ -19,6 +19,7 @@ int test(char * ip) {
 void wait(int b, char * ip) {
 
 	while (1) {	
+	
 	sleep (5);
 	test(ip);
 		

@@ -1,5 +1,5 @@
 /"Конечный автомат на С с двумя состояниями.
- Работает в фоне, уведомляет о разрыве сети*/
+Работает в фоне, уведомляет о разрыве сети*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,7 +28,7 @@ void wait(int b, char * ip) {
 	if (test(ip) == 1) {
 	system("beep -f 2200 -l 3000");
 } 
-		else {
+	else {
 	system("beep -f 1200 -l 2000");
 		
 	      }	

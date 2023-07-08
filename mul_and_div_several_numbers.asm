@@ -4,8 +4,8 @@ section .text
 global _start               ;must be declared for using gcc
 _start:                     ;tell linker entry point
 
-    mov     eax, 125 ;пишем 5
-    mov     ebx, 125 ;пишем 3
+    mov     eax, 125 ;пишем 125
+    mov     ebx, 125 ;пишем 125
     mul     ebx         ;умножаем, результат в регистрах edx:eax
 
     mov edi, 6          ;счётчик

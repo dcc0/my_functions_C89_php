@@ -7,8 +7,8 @@
 
 int confirm_choice () {
 
-		char input_confirm;
-	    /*Используем двойной scanf, чтобы подтвердить нажатие*/
+ char input_confirm;
+ /*Используем двойной scanf, чтобы подтвердить нажатие*/
         scanf( "%c", &input_confirm );
         scanf( "%c", &input_confirm );
        if (input_confirm =='\n') {

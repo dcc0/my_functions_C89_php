@@ -1,7 +1,11 @@
 #include <stdio.h>
+
 #include <stdlib.h>
+
 #include <string.h>
+
 #include <unistd.h>
+
 /* Пример реализации выбора с перерисовкой окна и выходом.
  * Сохранение положения элементов окна осуществляется через вызов clear -
  * очищение окна*/
@@ -12,8 +16,8 @@ int confirm_choice() {
   char input_confirm;
   /*Используем двойной scanf, чтобы подтвердить нажатие*/
   printf("\nНажмите Enter\n");
-  scanf("%c", &input_confirm);
-  scanf("%c", &input_confirm);
+  scanf("%c", & input_confirm);
+  scanf("%c", & input_confirm);
   if (input_confirm == '\n') {
     return 0;
   } else {
@@ -22,13 +26,14 @@ int confirm_choice() {
 }
 
 // Функция вывода селектора.  Возвращает название программы
-char *print_select(int select) {
+char * print_select(int select) {
   //============READING FILE============//
   // Читаем файл с программами
-  FILE *file;
+  FILE * file;
   char buffer;
   char str[10];
   int i = 0;
+  /*Количество вариантов*/
   int z = 0;
   int j = 0;
   // Количество показываемых файлов. Массив
@@ -51,7 +56,7 @@ char *print_select(int select) {
         // Или косую черту, или закомментируем
         //str[0] = '/';
       }
-      // Читаем в массив строк названия программ
+      /*Запишем 0 в конец строки*/
       arr1[z][j] = '\0';
       z++;
       i = 0;
@@ -70,19 +75,21 @@ char *print_select(int select) {
 
   //====ВЫВОДИМ СЕЛЕКТОР===
   /*Очистим экран. Обновим. Первый раз выводим*/
-
   system("clear");
   if (select == 0) {
-    for (j = 0; j < z + 1; j++) {
+    /*Количество вариантов выбора в переменной z*/
+    for (j = 0; j != z; j++) {
       printf("%s\n", arr1[j]);
     }
   }
+
+//====ЕСЛИ СДЕЛАН ВЫБОР===
   /*Результат тут будет. Передали в эту функцию строку.*/
-  char *p;
+  char * p;
   int choice = select - 1;
   // Выводим результат выбора
   if (select > 0) {
-    for (j = 0; j < z + 1; j++) {
+    for (j = 0; j != z; j++) {
       // Выделяем цветом выбор
       if (select == j) {
         // Запомним выбор. Нужно, чтобы напечатать в правильно
@@ -91,7 +98,7 @@ char *print_select(int select) {
         printf("->%s%s%s\n", colored, arr1[select - 1], uncolored);
         /* Возвращаем указатель на область памяти, где эта строка. Заодно
          * выделили память под нее*/
-        p = (char *)malloc(strlen(arr1[select - 1]) + 1);
+        p = (char * ) malloc(strlen(arr1[select - 1]) + 1);
         strcpy(p, arr1[select - 1]);
       }
       if (j != choice) printf("%s\n", arr1[j]);
@@ -103,7 +110,7 @@ char *print_select(int select) {
 }
 
 int main() {
-  char *run_program;
+  char * run_program;
   int select = 0;
   int input;
 
@@ -113,16 +120,17 @@ int main() {
 
   /*Сканируем ввод*/
   while (1) {
-    scanf("%d", &input);
+    scanf("%d", & input);
     if (input == 7) {
       printf("Выход\n");
       break;
     }
 
-    // Тут выбор
+    /*Выбор тут*/
     if (input > 0) {
       select = input;
       run_program = print_select(select);
+      /*Подтвердим и выполним*/
       if (confirm_choice() == 0) {
         printf("Выполним программу %d\n", select);
         printf("%s", run_program);

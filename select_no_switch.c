@@ -1,3 +1,6 @@
+/* This program is an example of selector with choice confirmation, written in C (ANSI).
+ * Программа для выбора запускаемой программы с подтверждением. Реализация: C (ANSI или C89).
+ * By Ivan Gavryushin (dcc0@mail.ru, ivangavr777@gmail.com, mol0t@list.ru). MSK. Butovo. 2025*/
 	#include <stdio.h>
 
 	#include <stdlib.h>
@@ -9,7 +12,7 @@
 	/* Пример реализации выбора с перерисовкой окна и выходом.
 	 * Сохранение положения элементов окна осуществляется через вызов clear -
 	 * очищение окна*/
-	/*ВНИМАНИЕ! Вариант с лишним символом*/
+	
 
 	// Функция подтверждения ввода. Возвращает 0 при успехе.
 	int confirm_choice() {

@@ -144,7 +144,7 @@
 			select = 0;
 			print_select(select, p);
 			printf("Выбор сброшен\n");
-		  }
-		}
-	  }
+	}
+	}
+	}
 	}

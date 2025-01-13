@@ -69,7 +69,7 @@
 	  //===========END OF FILE READING=============//
 
 	  /*Выделение цветом*/
-	  char colored[14] = "\033[44m";
+	  char colored[14] = "\033[43m";
 	  /*Сброс цвета*/
 	  char uncolored[14] = "\033[0m";
 
@@ -79,7 +79,7 @@
 	  if (select == 0) {
 		/*Количество вариантов выбора в переменной z*/
 		for (j = 0; j != z; j++) {
-		  printf("%s\n", arr1[j]);
+		  printf("[%s]\n", arr1[j]);
 		}
 	  }
 
@@ -93,7 +93,7 @@
 			// Запомним выбор. Нужно, чтобы напечатать в правильно
 			// последовательности так как селектор с 1 по 6, массив с 0 по 5
 			choice = select - 1;
-			printf("->%s%s%s\n", colored, arr1[select - 1], uncolored);
+			printf("->[%s%s%s]\n", colored, arr1[select - 1], uncolored);
 			/* Возвращаем указатель на область памяти, где эта строка. Заодно
 			 * выделили память под нее (strlen - если не известен размер)*/
 			//p = (char * ) malloc(strlen(arr1[select - 1]) + 1);
@@ -101,7 +101,7 @@
 			p = (char * ) malloc(20);
 			strcpy(p, arr1[select - 1]);
 		  }
-		  if (j != choice) printf("%s\n", arr1[j]);
+		  if (j != choice) printf("[%s]\n", arr1[j]);
 		}
 	  }
 
@@ -144,7 +144,7 @@
 			select = 0;
 			print_select(select, p);
 			printf("Выбор сброшен\n");
-	}
-	}
-	}
+		  }
+		}
+	  }
 	}

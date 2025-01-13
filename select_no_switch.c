@@ -11,11 +11,14 @@ int confirm_choice () {
 
 		char input_confirm;
 	    /*Используем двойной scanf, чтобы подтвердить нажатие*/
-	    printf("Нажмите Enter");
+printf("Нажмите Enter");
 		scanf( "%c", &input_confirm );
 		scanf( "%c", &input_confirm );
-		if (input_confirm =='\n')
+	if (input_confirm =='\n') {
  		return 0;
+	} else {
+		return 1;
+	}
  }
 
 //Функция вывода селектора.  Возвращает название программы
@@ -125,8 +128,9 @@ while(1) {
 			run_program=print_select(select);
     		if(confirm_choice()== 0)  {
     		printf( "Выполним программу %d\n", select );
-    			printf( "%s", run_program );
-				system(run_program);
+    		printf( "%s", run_program );
+		//system(run_program);
+               	execl(run_program,  0, NULL);
 			}
 
 		}

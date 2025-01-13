@@ -22,11 +22,9 @@
 	  printf("\nНажмите Enter\n");
 	  scanf("%c", & input_confirm);
 	  scanf("%c", & input_confirm);
-	  if (input_confirm == '\n') {
+	  if (input_confirm == '\n')
 		return 0;
-	  } else {
 		return 1;
-	  }
 	}
 
 	// Функция вывода селектора.  Возвращает название программы
@@ -61,7 +59,7 @@
 		  z++;
 		  //Сбросим i , чтобы очистить str[0]
 		  //Так как ниже инкремент, то сбросим в -1, т.е. ниже i уже = 0
-		   //Иначе в str[0] всегда будет в начале первый символ
+		  //Иначе в str[0] всегда будет в начале первый символ
 		  i = -1;
 		}
 		i++;
@@ -92,7 +90,7 @@
 	  if (select > 0) {
 		for (j = 0; j != z; j++) {
 		  // Выделяем цветом выбор
-		  if (select == j) {
+		  if (select == j && select !=7) {
 			// Запомним выбор. Нужно, чтобы напечатать в правильно
 			// последовательности так как селектор с 1 по 6, массив с 0 по 5
 			choice = select - 1;
@@ -104,13 +102,20 @@
 			p = (char * ) malloc(20);
 			strcpy(p, arr1[select - 1]);
 		  }
+		  //Раскрасим выход
+		  	if (select == 7 && select ==j+1) {
+			choice = select - 1;
+			printf("->[%s%s%s]\n", colored, arr1[select - 1], uncolored);
+		 }
 		  if (j != choice) printf("[%s]\n", arr1[j]);
 		}
 	  }
 
 
 	  /*Вернем название программы, которую надо выполнить*/
-	  if (p != "") return p;
+	  if (p != "")
+	  return p;
+	  return "1";
 	}
 
 	int main() {
@@ -127,12 +132,14 @@
 	  while (1) {
 		scanf("%d", & input);
 		if (input == 7) {
+		  select=input;
+		  print_select(select, p);
 		  printf("Выход\n");
 		  break;
 		}
 
 		/*Выбор тут*/
-		if (input > 0) {
+		if (input > 0 && input !=7) {
 		  select = input;
 		  run_program = print_select(select, p);
 		  /*Подтвердим и выполним*/
@@ -148,6 +155,7 @@
 			print_select(select, p);
 			printf("Выбор сброшен\n");
 		  }
+
 		}
 	  }
 	}

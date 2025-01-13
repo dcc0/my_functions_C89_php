@@ -83,7 +83,6 @@ char * print_select(int select) {
     }
   }
 
-//====ЕСЛИ СДЕЛАН ВЫБОР===
   /*Результат тут будет. Передали в эту функцию строку.*/
   char * p;
   int choice = select - 1;
@@ -126,11 +125,10 @@ int main() {
       break;
     }
 
-    /*Выбор тут*/
+    // Тут выбор
     if (input > 0) {
       select = input;
       run_program = print_select(select);
-      /*Подтвердим и выполним*/
       if (confirm_choice() == 0) {
         printf("Выполним программу %d\n", select);
         printf("%s", run_program);

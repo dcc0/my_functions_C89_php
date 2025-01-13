@@ -35,7 +35,8 @@ char *print_select(int select) {
   char arr1[6][12];
   // Файл с программами. Ищем файлы .sh в количестве 6 шт. в текущей директории
   // (демо версия:)). system("ls *.sh | head -n 6 > data.txt"); В data.txt
-  // следует писать названия программ с абсолютными путями
+  // следует писать названия программ с абсолютными путями, если используем execl
+  // Если system, то так: ls, pwd и т.д.
   file = fopen("data.txt", "r");
   while ((buffer = getc(file)) != EOF) {
     str[i] = buffer;
@@ -48,7 +49,7 @@ char *print_select(int select) {
         // Добавим пробел, иначе в начале строки будет лишний символ
         // str[0]=' ';
         // Или косую черту, или закомментируем
-        str[0] = '\t';
+        //str[0] = '/';
       }
       // Читаем в массив строк названия программ
       arr1[z][j] = '\0';
@@ -73,7 +74,7 @@ char *print_select(int select) {
   system("clear");
   if (select == 0) {
     for (j = 0; j < z + 1; j++) {
-      printf("%s%s\n", arr1[j], uncolored);
+      printf("%s\n", arr1[j]);
     }
   }
   /*Результат тут будет. Передали в эту функцию строку.*/
@@ -93,7 +94,6 @@ char *print_select(int select) {
         p = (char *)malloc(strlen(arr1[select - 1]) + 1);
         strcpy(p, arr1[select - 1]);
       }
-
       if (j != choice) printf("%s\n", arr1[j]);
     }
   }

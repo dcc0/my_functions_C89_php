@@ -131,6 +131,7 @@
 	  /*Сканируем ввод*/
 	  while (1) {
 		scanf("%d", & input);
+		
 		if (input == 7) {
 		  select=input;
 		  print_select(select, p);
@@ -139,7 +140,7 @@
 		}
 
 		/*Выбор тут*/
-		if (input > 0 && input !=7) {
+		if (input > 0 && input < 7) {
 		  select = input;
 		  run_program = print_select(select, p);
 		  /*Подтвердим и выполним*/
@@ -158,4 +159,5 @@
 
 		}
 	  }
+	  return 0;
 	}

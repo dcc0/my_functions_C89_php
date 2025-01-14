@@ -18,6 +18,7 @@
 	// Функция подтверждения ввода. Возвращает 0 при успехе.
 	int confirm_choice() {
 	  char input_confirm;
+	  int  i =  0;
 	  /*Используем двойной scanf, чтобы подтвердить нажатие*/
 	  printf("\nНажмите Enter\n");
 	  scanf("%c", & input_confirm);
@@ -80,7 +81,7 @@
 	  if (select == 0) {
 		/*Количество вариантов выбора в переменной z*/
 		for (j = 0; j != z; j++) {
-		  printf("[%s]\n", arr1[j]);
+		  printf("%d.[%s]\n", j+1, arr1[j]);
 		}
 	  }
 
@@ -107,7 +108,7 @@
 			choice = select - 1;
 			printf("->[%s%s%s]\n", colored, arr1[select - 1], uncolored);
 		 }
-		  if (j != choice) printf("[%s]\n", arr1[j]);
+		  if (j != choice) printf("%d.[%s]\n", j+1, arr1[j]);
 		}
 	  }
 
@@ -121,17 +122,23 @@
 	int main() {
 	  char * run_program;
 	  int select = 0;
-	  int input;
+	  int input = 0;
 	  //Указатель на строку с программой, которая будет выделена и выполнена
 	  char * p;
+
 	  /*Сбросим цвет при старте*/
 	  /*Первый вызов селектора*/
 	  print_select(select, p);
 
 	  /*Сканируем ввод*/
 	  while (1) {
-		scanf("%d", & input);
-		
+		scanf("%d", &input);
+		//Проверим введённые данные. Попробуем привести к целому, если символ, так проверим ввод
+		if (input - '\0' == 0 ) {
+		printf("Неправильный ввод\n");
+		return 1;
+		}
+
 		if (input == 7) {
 		  select=input;
 		  print_select(select, p);
@@ -158,6 +165,7 @@
 		  }
 
 		}
+
 	  }
 	  return 0;
 	}

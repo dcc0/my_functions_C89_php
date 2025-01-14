@@ -24,7 +24,6 @@
 	  scanf("%c", & input_confirm);
 	  scanf("%c", & input_confirm);
 	  if (input_confirm == '\n') {
-		  	  printf("\ntest\n");
 		return 0;
 	}
 		return 1;

@@ -23,8 +23,10 @@
 	  printf("\nНажмите Enter\n");
 	  scanf("%c", & input_confirm);
 	  scanf("%c", & input_confirm);
-	  if (input_confirm == '\n')
+	  if (input_confirm == '\n') {
+		  	  printf("\ntest\n");
 		return 0;
+	}
 		return 1;
 	}
 
@@ -122,21 +124,28 @@
 	int main() {
 	  char * run_program;
 	  int select = 0;
-	  int input = 0;
+	  int input;
 	  //Указатель на строку с программой, которая будет выделена и выполнена
 	  char * p;
-
+	  //Счётчик для неправильных попыток
+	  int i = 3;
 	  /*Сбросим цвет при старте*/
 	  /*Первый вызов селектора*/
 	  print_select(select, p);
 
 	  /*Сканируем ввод*/
-	  while (1) {
+	  while ( 1) {
 		scanf("%d", &input);
 		//Проверим введённые данные. Попробуем привести к целому, если символ, так проверим ввод
 		if (input - '\0' == 0 ) {
-		printf("Неправильный ввод\n");
+		//Вызываем подтверждение ввода. Таким образом вернёмся к scanf, сбросим input
+		//На следующей итерации сканируем заново
+		//Возвращаем 0 и переходим к ожиданию нового ввода. Прыгаем к scanf
+		confirm_choice();
+		printf("Неправильный ввод %d\n", i);
+		if (i == 1)
 		return 1;
+		i--;
 		}
 
 		if (input == 7) {

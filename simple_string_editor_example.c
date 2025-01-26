@@ -3,17 +3,12 @@
  * 1) Перемещение по строке на стрелки
  * 2) Замена символов
  * 3) Удаление символов*/
- /*Если задавать при старте аргумент в виде файла и читать его,
-  * потом записывать, то возможно написать простейший редактор текста*/
+
 
 #include <stdio.h>
-
 #include <stdlib.h>
-
 #include <termios.h>
-
 #include <string.h>
-
 #include <unistd.h>
 
 static struct termios stored_settings;
@@ -39,30 +34,68 @@ void reset_keypress(void) {
   return;
 }
 
-
-
 int main(int argc, char * argv[]) {
+if (argc < 2) {
+ printf("Не задано имя текстового файла\n");
+return 0;
+}
+///////////////////////////////////////////////////////////////////////////////////////////
+  //==================READING FILE============//
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // Читаем файл
+  FILE * file;
+  char buffer1;
+    //str = буфер, который будем реадактировать
+  char str[200];
+  int i = 0;
+  /*Количество вариантов*/
+  int z = 0;
+  int j = 0;
+//Читаем файл из аргумента в буфер
+  file = fopen(argv[1], "r");
+while ((buffer1 = getc(file)) != EOF) {
+    str[i] = buffer1;
+    i++;
+  }
+ fclose(file);
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 //Стрелки
 	int  KEY_D = 68;
 	int  KEY_C = 67;
 
-     int z = 0; //Длина строки
-	char str[20] = "Edit thic string!";
+	int  KEY_Backspace = 127;
+	int  KEY_space = 32;
+	int  KEY_backqote = 96;
+	int KEY_ENTER=10;
+
+
+      z = 0; //Длина строки
+	//char str[20] = "Edit thic string!";
 	set_keypress(); //Переключим в non-canonical
 	 system("clear");
 	 printf("%s", str); //Печатаем строку первый раз
 
- char value = getchar(); //Ввод
-  int i = 0;
+	char value = getchar(); //Ввод
+	i = 0;
+	int y = 0;
+	int input = value - '\0';
+
 
 //Ищем длину строки
 for (i=0; str[i] != '\0'; i++)
 z++;
-int y = z;
+y = z;
+
 
   while (1) {
+
+input = value - '\0';
+
 //Двигаемся влево
-	if (value - '\0' == KEY_D ) {
+	if (input == KEY_D ) {
 	  system("clear");
 	  y--;
 	 for (i=0; i <= z; i++) {
@@ -72,11 +105,11 @@ int y = z;
 		 if (i == y)
 		  printf("]");
 		}
-	  value= ' ';
+	  input= KEY_backqote;
 	}
 
 	//Двигаемся вправо
-if (value - '\0' == KEY_C ) {
+if (input == KEY_C ) {
 	  system("clear");
 	  y++;
 	 for (i=0; i <= z; i++) {
@@ -86,14 +119,14 @@ if (value - '\0' == KEY_C ) {
 		 if (i == y)
 		  printf("]");
 		}
-		value= ' ';
+		input= KEY_backqote;
 	}
 
 //Удаляем символы. BackSpace
-	  if (value - '\0' ==127 && value != ' ') {
+	  if (input ==KEY_Backspace && input != KEY_backqote) {
 	  system("clear");
 	  y--;
-	  value= ' ';
+	  input= KEY_backqote;
 	 for (i=0; i <= z; i++) {
 		 str[y]=value;
 		 if (i == y)
@@ -114,7 +147,7 @@ if (value - '\0' == KEY_C ) {
 	y=z;
 
 //Редактируем символ
-	  if (value - '\0' > 96 && value - '\0' < 122  && value != ' ') {
+	  if (input > 96 && input < 122  && input != KEY_backqote ||  input == KEY_space && input != KEY_backqote) {
 	  system("clear");
 	 for (i=0; i <= z; i++) {
 		 str[y]=value;
@@ -125,9 +158,55 @@ if (value - '\0' == KEY_C ) {
 		  printf("]");
 		}
 		 printf("%c", str[i]);
-	value= ' ';
+	input= KEY_backqote;
 	 y++;
 	}
+
+	//Редактируем символ (цифры и большие буквы)
+	  if (input > 46 && input < 58  && input != KEY_backqote ||  input > 64 && input < 91 && input != KEY_backqote ) {
+	  system("clear");
+	 for (i=0; i <= z; i++) {
+		 str[y]=value;
+		 if (i == y)
+		  printf("[");
+		 printf("%c", str[i]);
+		 if (i == y)
+		  printf("]");
+		}
+		 printf("%c", str[i]);
+	input= KEY_backqote;
+	 y++;
+	}
+
+//Записываем новое значение в файл
+	if (input == KEY_ENTER ) {
+
+	FILE *fp = fopen(argv[1], "w");
+    if(fp)
+    {
+        // Записываем строку
+        fputs(str, fp);
+        fclose(fp);
+        printf("Edited\n");
+    }
+
+    z=0;
+    i=0;
+
+    //Заново читаем файл
+    file = fopen(argv[1], "r");
+	while ((buffer1 = getc(file)) != EOF) {
+    str[i] = buffer1;
+    i++;
+  }
+ fclose(file);
+	//Ищем длину строки
+	for (i=0; str[i] != '\0'; i++)
+	z++;
+	y = z;
+	}
+
+//Ожидание символа
 	value = getchar();
 
 	}

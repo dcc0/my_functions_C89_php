@@ -1,4 +1,11 @@
 /*Simple string text editor*/
+/*Пример редактора строки.
+ * 1) Перемещение по строке на стрелки
+ * 2) Замена символов
+ * 3) Удаление символов*/
+ /*Если задавать при старте аргумент в виде файла и читать его,
+  * потом записывать, то возможно написать простейший редактор текста*/
+
 #include <stdio.h>
 
 #include <stdlib.h>
@@ -33,25 +40,32 @@ void reset_keypress(void) {
 }
 
 
+
 int main(int argc, char * argv[]) {
+//Стрелки
+	int  KEY_D = 68;
+	int  KEY_C = 67;
 
-	char str[13] = "testtesttest";
-	set_keypress();
-	//printf("%s", str);
-	char value = getchar();
+     int z = 0; //Длина строки
+	char str[20] = "Edit thic string!";
+	set_keypress(); //Переключим в non-canonical
+	 system("clear");
+	 printf("%s", str); //Печатаем строку первый раз
 
-
+ char value = getchar(); //Ввод
   int i = 0;
-  int y = 12;
+
+//Ищем длину строки
+for (i=0; str[i] != '\0'; i++)
+z++;
+int y = z;
 
   while (1) {
-
-
-
-	if (value == 'D' ) {
+//Двигаемся влево
+	if (value - '\0' == KEY_D ) {
 	  system("clear");
 	  y--;
-	 for (i=0; i <= 12; i++) {
+	 for (i=0; i <= z; i++) {
 		 if (i == y)
 		  printf("[");
 		 printf("%c", str[i]);
@@ -61,11 +75,11 @@ int main(int argc, char * argv[]) {
 	  value= ' ';
 	}
 
-
-if (value == 'C' ) {
+	//Двигаемся вправо
+if (value - '\0' == KEY_C ) {
 	  system("clear");
 	  y++;
-	 for (i=0; i <= 12; i++) {
+	 for (i=0; i <= z; i++) {
 		 if (i == y)
 		  printf("[");
 		 printf("%c", str[i]);
@@ -75,15 +89,12 @@ if (value == 'C' ) {
 		value= ' ';
 	}
 
-
-
-
-
-	  if (value == '0' && value != ' ') {
+//Удаляем символы. BackSpace
+	  if (value - '\0' ==127 && value != ' ') {
 	  system("clear");
 	  y--;
 	  value= ' ';
-	 for (i=0; i <= 12; i++) {
+	 for (i=0; i <= z; i++) {
 		 str[y]=value;
 		 if (i == y)
 		  printf("[");
@@ -94,16 +105,18 @@ if (value == 'C' ) {
 		 printf("%c", str[i]);
 	}
 
-
-
-
+//Если достигли предела декремента
 	if (y < 0)
 	y=0;
 
+//Если достигли предела инкремента
+	if (y > z)
+	y=z;
 
-	  if (value == 's' ||  value == 'a' || value == 'b' && value != ' ') {
+//Редактируем символ
+	  if (value - '\0' > 96 && value - '\0' < 122  && value != ' ') {
 	  system("clear");
-	 for (i=0; i <= 12; i++) {
+	 for (i=0; i <= z; i++) {
 		 str[y]=value;
 		 if (i == y)
 		  printf("[");
@@ -115,9 +128,6 @@ if (value == 'C' ) {
 	value= ' ';
 	 y++;
 	}
-
-
-
 	value = getchar();
 
 	}

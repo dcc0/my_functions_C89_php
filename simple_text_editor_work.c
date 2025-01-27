@@ -65,11 +65,11 @@ while ((buffer1 = getc(file)) != EOF) {
 //Стрелки
 	int  KEY_D = 68;
 	int  KEY_C = 67;
-
 	int  KEY_Backspace = 127;
 	int  KEY_space = 32;
 	int  KEY_backqote = 96;
 	int KEY_ENTER=10;
+
 
 
       z = 0; //Длина строки
@@ -88,6 +88,10 @@ while ((buffer1 = getc(file)) != EOF) {
 for (i=0; str[i] != '\0'; i++)
 z++;
 y = z;
+
+
+//printf("%d", input);
+  //return 0;
 
   while (1) {
 
@@ -122,7 +126,7 @@ if (input == KEY_C ) {
 	}
 
 //Удаляем символы. BackSpace
-	  if (input ==KEY_Backspace && input != KEY_backqote) {
+	  if (input ==KEY_Backspace) {
 	  system("clear");
 	  y--;
 	  input= KEY_backqote;
@@ -145,8 +149,11 @@ if (input == KEY_C ) {
 	if (y > z)
 	y=z;
 
-//Редактируем символ
-	  if (input > 96 && input < 122  && input != KEY_backqote ||  input == KEY_space && input != KEY_backqote) {
+
+
+	//Редактируем символ (цифры и большие буквы)
+	  if (input > 96 && input < 127 || input > 31 && input  < 67 ||  input > 68 && input  <  89 || input > 91 && input  < 96) {
+
 	  system("clear");
 	 for (i=0; i <= z; i++) {
 		 str[y]=value;
@@ -194,21 +201,6 @@ if (input == KEY_C ) {
 
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
